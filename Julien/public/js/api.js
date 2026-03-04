@@ -42,7 +42,7 @@ const request = async (path, opts = {}) => {
   return { ok: res.ok, status: res.status, data };
 };
 
-// Auth 
+// Auth (centralisation des appelle api pour les routes auth)
 
 export const authAPI = {
   register: (body) => request('/auth/register', { method: 'POST', body: JSON.stringify(body) }),
@@ -54,12 +54,15 @@ export const authAPI = {
 // Tasks
 
 export const tasksAPI = {
+  //Méthode de filtrage des tasks
   getAll: (params = {}) => {
     const qs = new URLSearchParams(
-      Object.fromEntries(Object.entries(params).filter(([, v]) => v !== '' && v !== undefined))
+      Object.fromEntries(Object.entries(params).filter(([, v]) => v !== '' && v !== undefined)) //supression des filtre vide ou undefined
     ).toString();
     return request(`/tasks${qs ? `?${qs}` : ''}`);
   },
+
+  //appelles api pour les routes tasks
   getOne: (id) => request(`/tasks/${id}`),
   create: (body) => request('/tasks', { method: 'POST', body: JSON.stringify(body) }),
   update: (id, body) => request(`/tasks/${id}`, { method: 'PUT', body: JSON.stringify(body) }),

@@ -11,12 +11,12 @@
       theme: {
         extend: {
           colors: {
-            // Palette "à la VScode"
-            bg: '#0f172a',    // slate-900
-            card: '#1e293b',  // slate-800
+            // Palette du figma
+            bg: '#A8C3EA',    // Bleu clair
+            card: '##5D62EE',  // Bleu
             border: '#334155', // slate-700
-            text: '#f1f5f9',  // slate-100
-            primary: '#0ea5e9', // sky-500
+            text: '#000',  // Noir
+            primary: '#000', // Noir
           },
           fontFamily: {
             mono: ['Fira Code', 'Courier New', 'monospace'],
@@ -48,7 +48,7 @@
           >_ Tasks
         </a>
         <button
-          class="p-2.5 rounded border-2 border-border bg-card text-slate-400 hover:bg-red-950 hover:text-red-300 transition-colors"
+          class="p-2.5 rounded border-2 border-border bg-card text-black hover:bg-red-950 hover:text-red-300 transition-colors"
           id="logoutBtn" title="Se déconnecter" aria-label="Se déconnecter">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -66,23 +66,23 @@
     <div class="bg-card p-6 rounded-lg border-2 border-border flex items-center justify-between gap-6 mb-8 font-mono">
       <div class="flex items-center gap-6">
         <div class="stat-item">
-          <span class="text-4xl font-extrabold text-white" id="statTotal">—</span>
-          <span class="text-xs text-slate-400 block tracking-wider uppercase">Total</span>
+          <span class="text-4xl font-extrabold text-black" id="statTotal">—</span>
+          <span class="text-xs text-black block tracking-wider uppercase">Total</span>
         </div>
         <div class="w-px h-12 bg-border" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="text-4xl font-extrabold text-emerald-600 " id="statDone">—</span>
-          <span class="text-xs text-slate-400 block tracking-wider uppercase">Validé</span>
+          <span class="text-4xl font-extrabold text-emerald-700 " id="statDone">—</span>
+          <span class="text-xs text-black block tracking-wider uppercase">Validé</span>
         </div>
         <div class="w-px h-12 bg-border" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="text-4xl font-extrabold text-orange-400" id="statPending">—</span>
-          <span class="text-xs text-slate-400 block tracking-wider uppercase">En Attente</span>
+          <span class="text-4xl font-extrabold text-orange-600" id="statPending">—</span>
+          <span class="text-xs text-black block tracking-wider uppercase">En Attente</span>
         </div>
         <div class="w-px h-12 bg-border" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="text-4xl font-extrabold text-red-400" id="statUrgent">—</span>
-          <span class="text-xs text-slate-400 block tracking-wider uppercase">Urgent</span>
+          <span class="text-4xl font-extrabold text-red-600" id="statUrgent">—</span>
+          <span class="text-xs text-black block tracking-wider uppercase">Urgent</span>
         </div>
       </div>
       <span id="welcomeMsg" class="text-sm font-mono text-primary bg-bg border border-border px-4 py-2 rounded"></span>
@@ -105,7 +105,7 @@
 
       <div class="bg-card p-6 rounded-lg border-2 border-border col-span-1 flex flex-col h-[33vh]">
         <div class="flex items-center justify-between mb-6 flex-shrink-0 border-b-2 border-border pb-4">
-          <h2 class="text-lg font-mono font-bold tracking-tight text-red-400">./Urgent</h2>
+          <h2 class="text-lg font-mono font-bold tracking-tight text-red-600">./Urgent</h2>
           <button onclick="openTaskModal('urgent')"
             class="text-xs font-semibold text-primary hover:text-white flex items-center gap-1.5"
             aria-label="Ajouter une tâche urgente">

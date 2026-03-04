@@ -13,7 +13,7 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
-    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = jwt.verify(token, process.env.JWT_SECRET); //verif du tokken avec le secret 
     next();
   } catch {
     return res.status(401).json({ error: 'Token invalide ou expiré' });

@@ -35,7 +35,7 @@ const displayAlert = (message, type = 'error') => {
   alertEl.classList.remove('hidden');
 };
 
-// Login handler────────────
+// Login handler
 
 /**
  * Tente une authentification avec les valeurs du formulaire.
@@ -50,22 +50,22 @@ const handleLogin = async () => {
   }
 
   loginBtn.disabled = true;
-  loginBtn.textContent = 'Authenticating...';
+  loginBtn.textContent = 'Connection...';
 
-  const { ok, data } = await authAPI.login({ email, password });
+  const { ok, data } = await authAPI.login({ email, password }); //envoie à l'api les input
 
-  if (!ok) {
+  if (!ok) { //Données non valide on remonte l'erreur et on remet le bouton en login()
     displayAlert(data?.error ?? 'Identifiants invalides.');
     loginBtn.disabled = false;
     loginBtn.textContent = 'login()';
     return;
   }
-
+  //Connexion ok, on set le token dans le local et on redirige vers le dashboard
   localStorage.setItem('token', data.token);
   window.location.href = '/dashboard';
 };
 
-// Events loginBtn.addEventListener('click', handleLogin);
+// Events loginBtn.addEventListener('click', handleLogin); (gestion de l'event avec la touche enter)
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') handleLogin();
 });

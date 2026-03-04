@@ -14,7 +14,7 @@ const colSemaine = document.getElementById('colSemaine');
 const colUrgent = document.getElementById('colUrgent');
 const colAujourdhui = document.getElementById('colAujourdhui');
 
-// Priority indicator 
+// Couleurs d'incateur de priorité  
 const PRIORITY_CONFIG = {
   low: { color: 'bg-emerald-500', label: 'Basse' },
   medium: { color: 'bg-amber-400', label: 'Moyenne' },
@@ -33,11 +33,11 @@ const createPriorityIndicator = (priority) => {
   const wrapper = document.createElement('div');
   wrapper.className = 'flex items-center gap-1.5';
   wrapper.title = `Priority: ${label}`;
-  wrapper.innerHTML = `<span class="h-2 w-2 rounded-full ${color}" aria-hidden="true"></span>`;
+  wrapper.innerHTML = `<span class="h-4 w-4 rounded-full ${color}" aria-hidden="true"></span>`;
   return wrapper;
 };
 
-// Task card ─
+// Task card 
 
 /**
  * Crée une carte de tâche pour le dashboard.
@@ -67,7 +67,7 @@ const createTaskCard = (task) => {
 
   if (task.tag) {
     const tag = document.createElement('span');
-    tag.className = 'px-2 py-0.5 font-mono bg-slate-800 text-slate-300 rounded border border-border';
+    tag.className = 'px-2 py-0.5 font-mono bg-slate-800 text-white rounded border border-border';
     tag.textContent = task.tag;
     rightPart.appendChild(tag);
   }
@@ -77,7 +77,7 @@ const createTaskCard = (task) => {
   return card;
 };
 
-// Column renderer ─
+// Column renderer 
 
 /**
  * Remplace le contenu d'une colonne avec la liste de tâches fournie.
@@ -89,7 +89,7 @@ const renderColumn = (colEl, tasks) => {
 
   if (!tasks.length) {
     colEl.innerHTML =
-      '<div class="text-center py-6 text-slate-500 text-sm border-2 border-dashed border-border rounded">null</div>';
+      '<div class="text-center py-6 text-slate-500 text-sm border-2 border-dashed border-border rounded">Aucune task()</div>';
     return;
   }
 
@@ -103,7 +103,7 @@ const renderColumn = (colEl, tasks) => {
  * @param {string} category
  */
 export const openTaskModal = (category) => {
-  window.location.href = `/tasks?new=true&cat=${category}`;
+  window.location.href = `/tasks?new=true&cat=${category}`; //un href dynamique via la catégorie
 };
 
 /**
@@ -111,7 +111,7 @@ export const openTaskModal = (category) => {
  * @param {number|string} id
  */
 export const navigateToEdit = (id) => {
-  window.location.href = `/tasks?edit=${id}`;
+  window.location.href = `/tasks?edit=${id}`;//redirection via url et id de l'objet
 };
 
 // Exposer pour les onclick inline dans le HTML
@@ -124,12 +124,12 @@ window.navigateToEdit = navigateToEdit;
  * Charge les données du dashboard (user + tâches) et met à jour le DOM.
  */
 const loadDashboard = async () => {
-  const { ok: meOk, data: me } = await authAPI.me();
+  const { ok: meOk, data: me } = await authAPI.me();//route de vérification du status login de l'user
   if (meOk) {
     document.getElementById('welcomeMsg').textContent = `user@jmb: ${me.username}`;
   }
 
-  const { ok, data: tasks } = await tasksAPI.getAll();
+  const { ok, data: tasks } = await tasksAPI.getAll(); //Récupération de toutes les task en lien avec user et mise en forme qui en suit 
   if (!ok) return;
 
   document.getElementById('statTotal').textContent = tasks.length;

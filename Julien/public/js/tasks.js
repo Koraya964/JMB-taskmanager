@@ -48,8 +48,8 @@ const createPriorityIndicator = (priority) => {
   wrapper.className = 'flex items-center gap-1.5 font-mono';
   wrapper.title = `Priority: ${label}`;
   wrapper.innerHTML = `
-    <span class="h-2 w-2 rounded-full ${color}" aria-hidden="true"></span>
-    <span class="text-xs text-slate-400">${label}</span>
+    <span class="h-4 w-4 rounded-full ${color}" aria-hidden="true"></span>
+    <span class="text-sm text-black">${label}</span>
   `;
   return wrapper;
 };
@@ -93,13 +93,13 @@ const renderTasks = (tasks) => {
     taskEl.innerHTML = `
       <button
         class="mt-1 flex-shrink-0 flex items-center justify-center w-6 h-6 rounded border-2
-               ${t.is_done ? 'bg-emerald-500 border-emerald-500' : 'border-border hover:border-primary'}"
+                ${t.is_done ? 'bg-emerald-500 border-emerald-500' : 'border-border hover:border-primary'}"
         aria-label="${t.is_done ? 'Mark as undone' : 'Mark as done'}">
         ${t.is_done
         ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
                   stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-               <polyline points="20 6 9 17 4 12"/>
-             </svg>`
+                polyline points="20 6 9 17 4 12"/>
+              </svg>`
         : ''}
       </button>
 
@@ -109,14 +109,14 @@ const renderTasks = (tasks) => {
             ${esc(t.title)}
           </span>
           <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-mono" id="task-meta-${t.id}">
-            ${t.tag ? `<span class="px-2 py-0.5 bg-slate-800 text-slate-300 rounded border border-border">${esc(t.tag)}</span>` : ''}
+            ${t.tag ? `<span class="px-2 py-0.5 bg-slate-800 text-white rounded border border-border">${esc(t.tag)}</span>` : ''}
             <span class="font-bold text-primary">${CAT_LABEL[t.category] ?? t.category}</span>
           </div>
         </div>
-        ${t.description ? `<p class="text-sm text-slate-400 mb-4 font-mono">${esc(t.description)}</p>` : ''}
+        ${t.description ? `<p class="text-sm text-black mb-4 font-mono">${esc(t.description)}</p>` : ''}
         <div class="flex justify-end gap-3 font-mono">
           <button class="edit-btn text-xs text-primary hover:text-white" data-id="${t.id}">edit</button>
-          <button class="del-btn  text-xs text-red-500 hover:text-red-300" data-id="${t.id}">del</button>
+          <button class="del-btn  text-xs text-red-500 hover:text-red-900" data-id="${t.id}">del</button>
         </div>
       </div>
     `;
