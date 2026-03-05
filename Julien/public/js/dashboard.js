@@ -51,7 +51,7 @@ const createTaskCard = (task) => {
     'hover:border-primary hover:shadow-lg flex items-center justify-between gap-2';
   card.addEventListener('click', () => navigateToEdit(task.id));
 
-  // Left — priorité + titre
+  // Left priorité + titre
   const leftPart = document.createElement('div');
   leftPart.className = 'flex items-center gap-3 truncate';
   leftPart.appendChild(createPriorityIndicator(task.priority));

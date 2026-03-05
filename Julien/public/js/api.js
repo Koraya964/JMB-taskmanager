@@ -57,7 +57,7 @@ export const tasksAPI = {
   //Méthode de filtrage des tasks
   getAll: (params = {}) => {
     const qs = new URLSearchParams(
-      Object.fromEntries(Object.entries(params).filter(([, v]) => v !== '' && v !== undefined)) //supression des filtre vide ou undefined
+      Object.fromEntries(Object.entries(params).filter(([, v]) => v !== '' && v !== undefined)) //supression des filtres des objets vide ou undefined
     ).toString();
     return request(`/tasks${qs ? `?${qs}` : ''}`);
   },
