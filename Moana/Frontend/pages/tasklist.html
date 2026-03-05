@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des tâches</title>
+</head>
+<link rel="stylesheet" href="../CSS/style.css">
+<script src="../js/auth.js"></script>
+
+<body>
+
+    <header>
+
+        <div class="titre_1">
+            <h1>JMB TASKMANAGER</h1>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- SECTION = barre d'actions -->
+
+        <section class="task_action">
+
+            <!-- bouton ajouter tâches -->
+            <button class="btn_add">Ajouter</button>
+
+            <!-- filtre de tag -->
+            <select class="task_filter" id="task_filter">
+                <option value="">Perso</option>
+                <option value="">Travail</option>
+                <option value="">Urgent</option>
+            </select>
+
+        </section>
+
+
+        <!-- SECTION = liste des tâches -->
+
+        <section class="task_list">
+
+                <!-- case à cocher si tâche terminer -->
+                <input type="checkbox" class="task_check">
+
+                <!-- titre de la tâche -->
+                <input type="text" class="task_title" placeholder="Titre de la tâche">
+
+<input type="text" class="task_com" placeholder="Description">
+
+                <!-- bouton supprimer -->
+                <button class="btn_del">Supprimer</button>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer></footer>
+
+</body>
+
+</html>
