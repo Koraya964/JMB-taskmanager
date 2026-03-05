@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List</title>
+    <!-- <link rel="stylesheet" href="../CSS/style.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-[#a8c3ea]">
+    <header class="justify-self-center"><p>Logo</p></header>
+    <main class="p-[2em]">
+      <div
+        id="mainContainer"
+        class="bg-white rounded-4xl w-full max-w-xl justify-self-center p-[1em]"
+      >
+        <div id="controls" class="justify-self-center">
+          <button>Add</button>
+          <select name="State" id="State">
+            <option value="all">All</option>
+            <option value="done">Done</option>
+            <option value="todo">To do</option>
+          </select>
+        </div>
+        <div class="taskContainer flex justify-between p-[1em] items-center">
+          <div>
+            <button
+              class="border-2 border-[#a8c3ea] rounded-md w-5 h-5 hover:bg-[#a8c3ea] m-2"
+            ></button>
+          </div>
+          <div class="task bg-[#a8c3ea] rounded-2xl w-md flex-col p-[1em]">
+            <h3 class="text-xl font-bold">Titre</h3>
+            <p class="bg-white rounded-xl p-[1em] my-2">Description</p>
+            <button
+              class="bg-[#EE5D5D] rounded-xl p-[2px] px-[1em] hover:bg-red-800 cursor-pointer flex col-3 justify-self-end"
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../js/listScript.js"></script>
+  </body>
+</html>
