@@ -1,6 +1,6 @@
 # JMB Task Manager
 
-> Mini Gestionnaire de Tâches Sécurisé — TP Diagnostic RNCP37674  
+> Mini Gestionnaire de Tâches Sécurisé
 > Travail en groupe de 3 · Durée : 3 jours
 
 ---
