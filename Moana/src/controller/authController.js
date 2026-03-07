@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { createUser, findByEmail } from "../models/User.js";
+import { createUser, findByEmail } from "../models/UserModel.js";
 
 // =============================================================
 //                          REGISTER
@@ -10,11 +10,11 @@ export const register = async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-        return res.status(400).json({ message: "tous les champs doivent être remplis" })
+        return res.status(400).json({ message: "Veuillez remplir tous les champs" });
     }
 
-    if (password.length < 2) {
-        return res.status(400).json({ message: "mot de passe trop court" })
+    if (password.length > 12) {
+        return res.status(400).json({ message: "Votre mot de passe est trop court" });
     }
 
     try {
