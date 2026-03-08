@@ -26,8 +26,28 @@ const app = express();
 // permet la discussion entre frontend et backend
 app.use(cors());
 // permet de sécurisé les headers de requête (HTTP) 
-// suite erreur favicon = rajout de "{contentsecuritypolicy}" (à retirer pour la production)
-app.use(helmet({ contentSecurityPolicy: false }));
+// suite erreur favicon = reconfiguration
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "data:"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'", "data:"],
+        objectSrc: ["'none'"],
+        baseUri: ["'self'"],
+        formAction: ["'self'"],
+        frameAncestors: ["'none'"]
+      }
+    },
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: { policy: "same-site" }
+  })
+);
+
 // permet la lecture de donnée JSON
 app.use(express.json());
 // permet la lecture des formulaire HTML
@@ -42,17 +62,17 @@ app.use("/users", authRoutes);
 
 // route "/"
 app.get("/", (req, res) => {
-res.sendFile(path.join(__dirname,"public/pages/register.html"))
+  res.sendFile(path.join(__dirname, "public/pages/register.html"))
 });
 
 // route "/login"
 app.get("/login", (req, res) => {
-res.sendFile(path.join(import.meta.dirname,"public/pages/login.html"))
+  res.sendFile(path.join(__dirname, "public/pages/login.html"))
 });
 
 // route "/list"
 app.get("/list", (req, res) => {
-res.sendFile(path.join(import.meta.dirname,"public/pages/tasklist.html"))
+  res.sendFile(path.join(__dirname, "public/pages/tasklist.html"))
 });
 
 // ------------------- Démarrage serveur -----------------------

@@ -1,45 +1,56 @@
 // ================================================================================
-//                           TASKLIST
+//                           TASKLIST FRONTEND
 // ================================================================================
 
-const e = require("cors");
-
 const form_list = document.getElementById("form_list");
-const btn_add = addEventListener("submit");
 
 if (form_list) {
-    form_login.addEventListener("btn_add", async (e) => {
-e.preventDefault();
+    form_login.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-const titre = document.getElementById("task_name");
-const description = document.getElementById("task_def");
+        const titre = document.getElementById("task_name").value;
+        const description = document.getElementById("task_def").value;
 
-const data = {
-    titre: titre.value,
-    description: description.value
-};
+        const data = {
+            titre: titre,
+            description: description
+        };
 
-try {
-    const res = await fetch("http://localhost:3000/")
-}
+        try {
+            const res = await fetch("http://localhost:3000/tasks", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorisation": "Bearer" + localStorage.getItem("token")
+                },
+                body: JSON.stringify(data)
+            });
 
-    });
-}
+            const result = await res.json();
+            console.log(result);
 
+        }
 
-
-
-
-
-
-
-
-
-    list: document.querySelector("#list"), // propriété liste de tâche
-
-    render(value) {
-        const li = document.createElement("li");
-        li.textContent = value;
-        this.list.appendChild(li);
+ } catch (err) {
+        console.error("Erreur :", err);
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+list: document.querySelector("#list"), // propriété liste de tâche
+
+    render(value) {
+    const li = document.createElement("li");
+    li.textContent = value;
+    this.list.appendChild(li);
+}
+    };

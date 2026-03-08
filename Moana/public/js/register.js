@@ -2,6 +2,14 @@
 //                           AUTH REGISTER
 // ================================================================================
 
+// REDIRECTION VERS "tasklist.html" SI TOKEN EXISTANT DONC UTILISATEUR CONNECTER
+const token = localStorage.getItem("token");
+
+if (token) {
+    globalThis.location.href = "tasklist.html";
+}
+
+// CIBLE LE FORMULAIRE POUR RECUPERER LES DONNEES VIA ECOUTE DES EVENEMENTS
 const form_register = document.getElementById("form_register");
 
 if (form_register) {
@@ -18,6 +26,7 @@ if (form_register) {
             password: password.value
         };
 
+        // DECLARATION DE LA REPONSE POUR RECUPERER LE TOKEN AU FORMAT JSON ET STOCKER DANS LE LOCAL STORAGE
         try {
             const res = await fetch("http://localhost:3000/users/register", {
                 method: "POST",
@@ -33,8 +42,11 @@ if (form_register) {
             if (json.token) {
                 localStorage.setItem("token", json.token);
             }
+
+            // 
         } catch (error) {
-            console.error({ message: error.message });
+            console.error("Erreur de connexion lors de l'inscription :", error);
         }
+
     });
 }
