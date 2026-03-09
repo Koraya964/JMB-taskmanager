@@ -3,27 +3,24 @@
  * ES6+ module, pas de dépendances externes.
  */
 
-const getToken = () => localStorage.getItem('token');
-
 const BASE_URL = '/api';
 
 /**
- * Fetch wrapper avec headers JWT automatiques.
+ * Fetch wrapper avec headers JWT automatiques.(JSDoc au cas ou je reviens dessus)
  * @param {string} path
  * @param {RequestInit} [opts]
  * @returns {Promise<{ok: boolean, status: number, data: any}>}
  */
-const request = async (path, opts = {}) => {
-  const token = getToken();
 
+const request = async (path, opts = {}) => {
+  // plus de getToken() ni de header Authorization
   const res = await fetch(`${BASE_URL}${path}`, {
-    credentials: 'include',
+    credentials: 'include', // envoie du cookie
     headers: {
       'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...opts.headers,
+      ...opts.headers, //spread des opts header (j'en ai pas en tête honnêtement)
     },
-    ...opts,
+    ...opts,//spread des opts (ex METHOD : POST)
   });
 
   const data = await res.json().catch(() => null);
@@ -32,7 +29,7 @@ const request = async (path, opts = {}) => {
   if (res.status === 401) {
     localStorage.removeItem('token');
 
-    // On ne redirige que si on n'est pas déjà sur la page de login
+    // On ne redirige que si on n'est pas déjà sur la page de login ('/')
     if (window.location.pathname !== '/') {
       window.location.href = '/';
     }

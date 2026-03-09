@@ -54,7 +54,7 @@ const createPriorityIndicator = (priority) => {
   return wrapper;
 };
 
-// Render ──
+// Render 
 
 /**
  * Charge les tâches en appliquant les filtres actifs puis les rend.
@@ -135,10 +135,10 @@ const renderTasks = (tasks) => {
   });
 };
 
-// Modal helpers ─────
+// Modal helpers
 
 /**
- * Ouvre le modal en mode création ou édition.
+ * Ouvre la modal en mode création ou édition.
  * @param {Object|null} task  — null pour créer, objet tâche pour éditer
  */
 const openModal = (task = null) => {
@@ -157,7 +157,7 @@ const openModal = (task = null) => {
 };
 
 /**
- * Ferme le modal et nettoie l'URL.
+ * Ferme la modal et nettoie l'URL.
  */
 const closeModal = () => {
   taskModal.classList.add('opacity-0', 'pointer-events-none');
@@ -171,7 +171,7 @@ const closeModal = () => {
   window.history.replaceState({}, '', url);
 };
 
-// CRUD ─
+// CRUD 
 
 /**
  * Sauvegarde la tâche en cours (création ou édition).
@@ -211,7 +211,7 @@ const saveTask = async () => {
 };
 
 /**
- * Ouvre le modal d'édition pour une tâche donnée.
+ * Ouvre la modal d'édition pour une tâche donnée.
  * @param {number|string} id
  */
 const editTask = async (id) => {
@@ -220,7 +220,7 @@ const editTask = async (id) => {
 };
 
 /**
- * Bascule l'état done/undone d'une tâche.
+ * Bascule l'état is_done/undone d'une tâche.
  * @param {number|string} id
  */
 const toggleTask = async (id) => {
@@ -238,7 +238,7 @@ const deleteTask = async (id) => {
   loadTasks();
 };
 
-// URL parameter handling
+// URL parameter handler
 
 /**
  * Lit les query params à l'init pour ouvrir directement création / édition.
@@ -257,7 +257,7 @@ const handleUrlParams = async () => {
   }
 };
 
-// Events ──
+// Events 
 document.getElementById('addBtn').addEventListener('click', () => openModal());
 document.getElementById('cancelBtn').addEventListener('click', closeModal);
 document.getElementById('logoutBtn').addEventListener('click', logout);
@@ -276,6 +276,6 @@ document.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') saveTask();
 });
 
-// Init ─
+// Init 
 loadTasks();
 handleUrlParams();

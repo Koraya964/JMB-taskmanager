@@ -8,7 +8,7 @@ const COOKIE_OPTS = {
   httpOnly: true,
   sameSite: 'strict',
   secure: process.env.NODE_ENV === 'production',
-  maxAge: 36000000,
+  maxAge: 3600000,
 };
 
 // Durée de vie du JWT de 1h 
@@ -26,7 +26,7 @@ export const register = async (req, res) => {
     return res.status(400).json({ error: 'Mot de passe trop court (12 car. min.)' });
 
   try {
-    const [existing] = await db.query( // Vérifie l'existing des index email et/ou username, pour ne pas avoir de doublons (sinon embêtant pour les task) 
+    const [existing] = await db.query( // Vérifie l'existing des index email ou username, pour ne pas avoir de doublons (sinon embêtant pour les task) 
       'SELECT id FROM users WHERE email = ? OR username = ?',
       [email, username]
     );
@@ -42,7 +42,7 @@ export const register = async (req, res) => {
 
     const token = signToken({ id: result.insertId, username, email });
     res.cookie('token', token, COOKIE_OPTS);//Création du tokken avec les COOKIE_OPTS
-    return res.status(201).json({ message: 'Compte créé', token });//si Ok on fait une 201 (create)
+    return res.status(201).json({ message: 'Compte créé' });//si Ok on fait une 201 (create)
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'Erreur serveur' });
@@ -60,15 +60,15 @@ export const login = async (req, res) => {
     const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
     if (!rows.length)
       return res.status(401).json({ error: 'Identifiant incorrect' });
-    //row[0] match on verify le password_hash avec l'input plaintext 
+    //row[0] match on verify le password_hash avec l'input plaintext
     const user = rows[0];
     const valid = await argon2.verify(user.password_hash, password);
     if (!valid)
       return res.status(401).json({ error: 'Identifiant incorrect' }); //MDP incorrect
 
     const token = signToken({ id: user.id, username: user.username, email: user.email });
-    res.cookie('token', token, COOKIE_OPTS); //login success (200) création de token avec ces OPTS
-    return res.status(200).json({ message: 'Connexion réussie', token });
+    res.cookie('token', token, COOKIE_OPTS); //login success (200) res de token avec ses OPTS
+    return res.status(200).json({ message: 'Connexion réussie' });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'Erreur serveur' });

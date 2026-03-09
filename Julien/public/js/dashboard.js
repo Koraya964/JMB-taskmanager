@@ -7,7 +7,7 @@ import { authAPI, tasksAPI } from './api.js';
 import { requireAuth, logout } from './ui.js';
 
 // Auth guard 
-requireAuth();
+await requireAuth();
 
 // DOM refs 
 const colSemaine = document.getElementById('colSemaine');
@@ -144,9 +144,9 @@ const loadDashboard = async () => {
 };
 
 // Events 
-document.getElementById('logoutBtn').addEventListener('click', logout);
+document.getElementById('logoutBtn').addEventListener('click', async () => { await logout() });
 document.getElementById('fabBtn').addEventListener('click', () => {
-  window.location.href = '/tasks';
+  window.location.href = '/tasks';//Floating action button, inspi de google
 });
 
 // Init 

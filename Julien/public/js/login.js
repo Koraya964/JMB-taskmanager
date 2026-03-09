@@ -6,8 +6,10 @@
 import { authAPI } from './api.js';
 
 // Redirect si déjà connecté
-if (localStorage.getItem('token')) {
-  window.location.href = '/dashboard';
+const { ok } = await authAPI.me();
+
+if (ok) {
+  window.location.href = '/dashboard'
 }
 
 //DOM refs
@@ -61,7 +63,6 @@ const handleLogin = async () => {
     return;
   }
   //Connexion ok, on set le token dans le local et on redirige vers le dashboard
-  localStorage.setItem('token', data.token);
   window.location.href = '/dashboard';
 };
 
