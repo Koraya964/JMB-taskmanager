@@ -13,6 +13,8 @@ import helmet from "helmet";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import authRoutes from "./src/routes/authRoute.js";
+import taskRoutes from "./src/routes/taskRoute.js";
+import cookieParser from "cookie-parser";
 
 
 // ------------- activation des fonctionnalités ------------------------------------ 
@@ -54,10 +56,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // création du chemin absolu rendant accessible le dossier "public"
 app.use(express.static(path.join(__dirname, "public")));
+// parsing de cookies
+app.use(cookieParser())
 
 // routes API
 app.use("/users", authRoutes);
-
+app.use("/tasks", taskRoutes);
 // ----------------------- Routes vers le front -------------------------------------------------
 
 // route "/"
@@ -79,5 +83,5 @@ app.get("/list", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Serveur lancé sur le port ${PORT}`);
+  console.log(`Serveur lancé sur le port http://localhost:${PORT}`);
 });

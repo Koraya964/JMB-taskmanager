@@ -21,6 +21,11 @@
         <div class="titre_1">
             <h1>JMB TASKMANAGER</h1>
         </div>
+<div>
+    <button id="btn_logout">
+    </button>
+</div>
+
     </header>
 
 
@@ -30,7 +35,8 @@
             <form id="form_list" class="w-100">
 
                 <div class="row align-items-end">
-                    <!-- CATEGORIE -->
+
+                    <!-- CATEGORIE 
                     <div class="col-3 mb-3">
                         <label for="task_tag" class="form-label">Catégorie</label>
                         <select class="form-select" id="task_tag">
@@ -39,7 +45,7 @@
                             <option value="travail">Travail</option>
                             <option value="urgent">Urgent</option>
                         </select>
-                    </div>
+                    </div>-->
 
 
                     <!-- TITRE DE LA TACHE -->
@@ -48,19 +54,21 @@
                         <input type="text" class="form-control" id="task_name" placeholder=" Intitulé de la tâche "
                             required>
                     </div>
-                    <!-- CASE A COCHER -->
+
+                    <!-- CASE A COCHER 
                     <div class="col-3 mb-3">
                         <div class="form-check">
                             <label for="checkbox" class="form-check-label">Effectué</label>
                             <input type="checkbox" class="form-check-input" id="checkbox">
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
                 <!-- DESCRIPTION DE LA TACHE -->
                 <div class="mb-3">
                     <label for="task_def" class="form-label">Description</label>
-                    <textarea class="form-control" id="task_def" rows="2" placeholder="Description de la tâche"></textarea>
+                    <textarea class="form-control" id="task_def" rows="2"
+                        placeholder="Description de la tâche"></textarea>
                 </div>
 
 
@@ -77,7 +85,6 @@
             <!-- LISTE DES TÂCHES -->
             <ul id="list" class="mt-4 w-100 list-group"></ul>
 
-
         </section>
     </main>
 
@@ -93,6 +100,8 @@
 
     <!-- JS PERSO -->
     <script src="../js/tasklist.js"></script>
+    <script src="../js/login.js"></script>
+
 
 
 </body>

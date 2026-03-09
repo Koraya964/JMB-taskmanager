@@ -1,39 +1,31 @@
-import { getAllTasks, createTask, deleteTaskById } from "../models/TaskModel.js";
+import { createTask, getAllTasks } from "../models/taskModel.js";
 
-// GET /tasks
-export const listTasks = async (req, res) => {
-    try {
-        const tasks = await getAllTasks();
-        return res.json(tasks);
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
-    }
-};
-
-// POST /tasks
-export const addTask = async (req, res) => {
-    const { title } = req.body;
+export const create = async (req, res) => {
+    const { title, description } = req.body;
+    const user_id = req.user.id; // récupéré via JWT
 
     if (!title) {
-        return res.status(400).json({ message: "Titre obligatoire" });
+        return res.status(400).json({ message: "Le titre est obligatoire" });
     }
 
     try {
-        await createTask(title);
-        return res.json({ message: "Tâche ajoutée" });
+        const task = await createTask({ user_id, title, description });
+        return res.status(201).json(task);
+
     } catch (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: "Erreur serveur" });
     }
 };
 
-// DELETE /tasks/:id
-export const removeTask = async (req, res) => {
-    const { id } = req.params;
+export const list = async (req, res) => {
+    const user_id = req.user.id;
 
     try {
-        await deleteTaskById(id);
-        return res.json({ message: "Tâche supprimée" });
+        const tasks = await getAllTasks(user_id);
+        return res.json(tasks);
+
     } catch (err) {
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: "Erreur serveur" });
     }
 };
+
