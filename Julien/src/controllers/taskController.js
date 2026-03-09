@@ -131,7 +131,7 @@ export const deleteTask = async (req, res) => {
       'SELECT id FROM tasks WHERE id = ? AND user_id = ?',
       [id, userId]
     );
-    if (!rows.length) return res.status(404).json({ error: 'Tâche introuvable' }); //Eventuellement déjà delete en DB/aucun match/non appartenance
+    if (!rows.length) return res.status(404).json({ error: 'Tâche introuvable' }); //Eventuellement déjà delete en DB, aucun match, non appartenance
 
     await db.query('DELETE FROM tasks WHERE id = ? AND user_id = ?', [id, userId]);
     return res.json({ message: 'Tâche supprimée' });

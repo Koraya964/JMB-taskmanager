@@ -1,8 +1,10 @@
 import { authAPI } from './api.js';
 
 //Redirect si déjà connecté 
-if (localStorage.getItem('token')) {
-  window.location.href = '/dashboard';
+const { ok } = await authAPI.me();
+
+if (ok) {
+  window.location.href = '/dashboard'
 }
 
 // DOM refs 
@@ -88,7 +90,7 @@ const handleRegister = async () => {
     return;
   }
 
-  localStorage.setItem('token', data.token);
+  // localStorage.setItem('token', data.token);
   window.location.href = '/dashboard';
 };
 
