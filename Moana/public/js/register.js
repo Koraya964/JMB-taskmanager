@@ -32,8 +32,12 @@ if (form_register) {
             const json = await res.json();
             console.log(json);
 
+            // SI TOKEN REDIRECT PAGE LIST SINON PAGE LOGIN
             if (json.token) {
                 localStorage.setItem("token", json.token);
+                window.location.replace("/list");
+            } else {
+                window.location.replace("/login");
             }
 
             // 

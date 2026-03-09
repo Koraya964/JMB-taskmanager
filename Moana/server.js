@@ -59,9 +59,12 @@ app.use(express.static(path.join(__dirname, "public")));
 // parsing de cookies
 app.use(cookieParser())
 
-// routes API
+// ---------------------------- routes API -------------------------------------------
+
 app.use("/users", authRoutes);
 app.use("/tasks", taskRoutes);
+
+
 // ----------------------- Routes vers le front -------------------------------------------------
 
 // route "/"

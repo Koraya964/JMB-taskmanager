@@ -11,12 +11,10 @@ if (form_list) {
 
         const title = document.getElementById("task_name").value;
         const description = document.getElementById("task_def").value;
+        const done = document.getElementById("checkbox").checked;
 
-        const data = {
-            title,
-            description,
-        };
-console.log(data);
+        const data = { title, description, done };
+        console.log("données envoyées :", data);
 
         try {
             const res = await fetch("http://localhost:3000/tasks/create", {
@@ -26,16 +24,18 @@ console.log(data);
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(data),
+                // a vérifier utilité
                 credentials: "include"
 
             });
 
             const result = await res.json();
-            console.log(result);
+            console.log("Réponse backend :", result);
 
             // Si la tâche est créée, on l'affiche dans la liste
-            if (result.titre) {
-                taskUI.render(result.titre);
+            if (result.title) {
+                taskUI.render(result);
+                form_list.reset();
             }
 
         } catch (err) {
@@ -54,17 +54,26 @@ const taskUI = {
 
     render(task) {
         const li = document.createElement("li");
-        li.classList.add("list-group-item");
+        li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
 
         li.innerHTML = `
-            <strong>${task.titre}</strong>
-            <br>
-            <small>${task.description || ""}</small>
+            <div>
+                <strong>${task.title}</strong><br>
+                <small>${task.description || ""}</small>
+            </div>
+            
+            <span class="badge ${task.done ? "bg-success" : "bg-secondary"}">
+                ${task.done ? "Effectué" : "À faire"}
+            </span>
         `;
 
         this.list.appendChild(li);
     }
 };
+
+// ================================================================================
+//                           LOGOUT
+// ================================================================================
 
 const logout = () => {
     localStorage.removeItem('token');

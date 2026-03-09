@@ -21,18 +21,14 @@
         <div class="titre_1">
             <h1>JMB TASKMANAGER</h1>
         </div>
-<div>
-    <button id="btn_logout">
-    </button>
-</div>
 
     </header>
 
 
     <!-----------------MAIN + FORMULAIRE LISTE TACHES ------------------------>
     <main>
-        <section class="box">
-            <form id="form_list" class="w-100">
+        <section>
+            <form id="form_list" class="w-100 box">
 
                 <div class="row align-items-end">
 
@@ -55,13 +51,13 @@
                             required>
                     </div>
 
-                    <!-- CASE A COCHER 
+                    <!-- CASE A COCHER -->
                     <div class="col-3 mb-3">
-                        <div class="form-check">
+                        <div class="form-checkbox">
                             <label for="checkbox" class="form-check-label">Effectué</label>
                             <input type="checkbox" class="form-check-input" id="checkbox">
                         </div>
-                    </div>-->
+                    </div>
                 </div>
 
                 <!-- DESCRIPTION DE LA TACHE -->
@@ -74,8 +70,14 @@
 
                 <!-- BOUTON AJOUTER + SUPPRIMER -->
                 <div class="d-flex gap-3">
+                    <!-- un type submit et l'autre button pour différencier chacun lors de son d"clenchement -->
                     <button type="submit" class="btn btn-success w100" id="btn_add">Ajouter</button>
-                    <button type="submit" class="btn btn-danger w100" id="btn_del">Supprimer</button>
+                    <button type="button" class="btn btn-danger w100" id="btn_del">Supprimer</button>
+                </div>
+
+                <div>
+                    <button id="btn_logout" class="btn btn-danger w-100">Logout
+                    </button>
                 </div>
 
 

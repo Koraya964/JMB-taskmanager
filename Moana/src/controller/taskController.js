@@ -1,7 +1,7 @@
 import { createTask, getAllTasks } from "../models/taskModel.js";
 
 export const create = async (req, res) => {
-    const { title, description } = req.body;
+    const { title, description, done } = req.body;
     const user_id = req.user.id; // récupéré via JWT
 
     if (!title) {
@@ -9,7 +9,7 @@ export const create = async (req, res) => {
     }
 
     try {
-        const task = await createTask({ user_id, title, description });
+        const task = await createTask({ user_id, title, description, done });
         return res.status(201).json(task);
 
     } catch (err) {
